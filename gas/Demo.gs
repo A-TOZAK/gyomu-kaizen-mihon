@@ -444,6 +444,8 @@ const DEMO_CASES = {
 function setupDemo() {
   ownerOnlyDemo_();
   setup();
+  // 画面のデータに持ち主のアドレスを出さない（2026-10-28）
+  PropertiesService.getScriptProperties().setProperty('NAMES', JSON.stringify({ 'demo-owner@example.com': '木村' }));
   loadDemo();
   ScriptApp.getProjectTriggers().filter(t => t.getHandlerFunction() === 'loadDemo').forEach(t => ScriptApp.deleteTrigger(t));
   ScriptApp.newTrigger('loadDemo').timeBased().everyDays(1).atHour(3).create();
