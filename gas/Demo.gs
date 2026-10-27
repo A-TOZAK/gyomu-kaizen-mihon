@@ -442,6 +442,7 @@ const DEMO_CASES = {
 };
 
 function setupDemo() {
+  ownerOnlyDemo_();
   setup();
   loadDemo();
   ScriptApp.getProjectTriggers().filter(t => t.getHandlerFunction() === 'loadDemo').forEach(t => ScriptApp.deleteTrigger(t));
@@ -455,4 +456,10 @@ function loadDemo() {
     for (let r = sh.getLastRow(); r > 1; r--) sh.deleteRow(r);
   });
   DEMO_CASES.cases.forEach(p => receiveCase_(Object.assign({ action: 'case' }, p)));
+}
+
+/** setupDemo は持ち主が編集画面で実行したときだけ動く（だれでも開けるため） */
+function ownerOnlyDemo_() {
+  const a = Session.getActiveUser().getEmail(), e = Session.getEffectiveUser().getEmail();
+  if (!a || a !== e) throw new Error('持ち主だけが実行できます');
 }
