@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>人の確認シート（見本）</title>
+<meta name="description" content="AIが下書きした敷地調査の報告書を、人が根拠を見て確かめるための一覧の見本です。データはすべて架空です。">
+<meta name="robots" content="noindex">
+<style>
+:root{--ink:#1f2328;--sub:#5b6168;--line:#dfe2e6;--wash:#f4f5f7;--key:#1f4e79;--key-wash:#e7eef6;--warn:#b4532a;--warn-wash:#fbefe8;--ok:#2d6a3e;--done:#c8322b}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Hiragino UD Sans StdN","Hiragino Sans","BIZ UDPGothic","Noto Sans JP",sans-serif;color:var(--ink);background:#fff;line-height:1.7;font-size:15px}
+.bar{background:var(--ink);color:#fff;font-size:13px;padding:8px 16px;display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between}
+.bar a{color:#fff}
+main{max-width:980px;margin:0 auto;padding:28px 16px 64px}
+h1{font-size:26px;margin:0 0 6px;word-break:auto-phrase}
+.lead{color:var(--sub);margin:0 0 20px}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 24px}
+.how div{background:var(--wash);border-radius:8px;padding:12px 14px;font-size:14px}
+.how b{display:block;color:var(--key)}
+.case{border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:16px;display:flex;flex-wrap:wrap;gap:6px 24px;font-size:14px}
+.case span{color:var(--sub)}
+.progress{display:flex;align-items:center;gap:12px;margin:0 0 12px;font-weight:700}
+.meter{flex:1;height:10px;background:var(--wash);border-radius:5px;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--key);transition:width .2s}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{background:var(--key);color:#fff;text-align:left;padding:8px 10px;font-weight:600}
+td{border-bottom:1px solid var(--line);padding:10px;vertical-align:top}
+td.v{font-weight:700}
+.tag{display:inline-block;font-size:12px;border-radius:4px;padding:1px 8px;white-space:nowrap}
+.tag.ok{background:#e8f3eb;color:var(--ok)}
+.tag.warn{background:var(--warn-wash);color:var(--warn)}
+button{font:inherit;font-size:13px;border:1px solid var(--line);background:#fff;border-radius:6px;padding:5px 10px;cursor:pointer}
+button.src{color:var(--key);border-color:#b9cbe0}
+.act{display:flex;gap:6px;flex-wrap:wrap}
+tr.checked td{background:#fafafa}
+tr.checked .st::after{content:"確かめた";color:var(--done);font-weight:700;font-size:13px}
+tr.fixed .st::after{content:"直した";color:var(--done);font-weight:700;font-size:13px}
+.fixnote{display:block;color:var(--done);font-size:13px;margin-top:4px}
+dialog{border:none;border-radius:10px;max-width:560px;width:calc(100% - 32px);padding:20px 22px;box-shadow:0 10px 40px rgba(0,0,0,.25)}
+dialog h2{font-size:18px;margin:0 0 8px}
+dialog .paper{background:var(--wash);border-radius:6px;padding:12px 14px;font-size:14px;margin:10px 0}
+dialog .paper mark{background:#fff2a8}
+.foot{margin-top:28px;font-size:13px;color:var(--sub)}
+@media (max-width:720px){
+  .how{grid-template-columns:1fr}
+  table,thead,tbody,tr,td{display:block}
+  thead{display:none}
+  tr{border:1px solid var(--line);border-radius:8px;margin-bottom:10px;padding:4px 0}
+  td{border:none;padding:4px 12px}
+}
+</style>
+</head>
+<body>
+<div class="bar"><span>見本です。データはすべて架空で、押した結果はどこにも保存されません。</span><a href="../">見本の一覧へ戻る</a></div>
+<main>
+  <h1>人の確認シート（見本）</h1>
+  <p class="lead">AIが下書きした敷地調査の報告書のうち、人が根拠を見て確かめる項目だけを1枚に集めたものです。AIの値をそのまま出さず、資格者が確かめてから報告書に入れます。</p>
+
+  <div class="how">
+    <div><b>1　根拠を開く</b>AIがその値を読み取った地図や資料を、項目ごとにすぐ開けます。</div>
+    <div><b>2　見比べる</b>資料と値が合っているかを見ます。「要確認」は、AIが自信のない項目です。</div>
+    <div><b>3　印を付ける</b>合っていれば「確かめた」、違っていれば正しい値を入れて「直した」にします。</div>
+  </div>
+
+  <div class="case">
+    <div><span>案件</span>　A-0001</div>
+    <div><span>場所</span>　見本市見本町101番（架空）</div>
+    <div><span>種類</span>　敷地調査</div>
+    <div><span>AIが下書きした日</span>　2026年9月28日</div>
+  </div>
+
+  <div class="progress">確かめた <span id="done">0</span>／<span id="all">0</span> 項目<div class="meter"><i id="bar"></i></div></div>
+
+  <table>
+    <thead><tr><th style="width:18%">項目</th><th style="width:22%">AIが入れた値</th><th style="width:12%">AIの自信</th><th>人が見ること</th><th style="width:20%">印</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+  <p class="foot">この見本は、土地家屋調査士の事務所の業務改善で作った道具を、架空のデータで作り直したものです。作成　外﨑顯博（2026年10月）</p>
+</main>
+
+<dialog id="dlg">
+  <h2 id="dtitle"></h2>
+  <div>AIが読み取った資料（見本）</div>
+  <div class="paper" id="dpaper"></div>
+  <div class="act"><button id="dclose">閉じる</button></div>
+</dialog>
+
+<script>
+const ITEMS = [
+  ['用途地域', '第一種低層住居専用地域', 'ok', '市の都市計画の地図で、敷地の色と凡例を見比べます。', '見本市 都市計画図：敷地の位置は <mark>第一種低層住居専用地域</mark>（緑の区域）'],
+  ['建ぺい率', '50％', 'ok', '用途地域と同じ地図の数字を見ます。', '見本市 都市計画図：<mark>建ぺい率50％</mark>　容積率100％'],
+  ['容積率', '100％', 'ok', '前の道の幅が4m未満のときは、幅で上限が下がるので注意します。', '見本市 都市計画図：建ぺい率50％　<mark>容積率100％</mark>'],
+  ['前の道の種類', '42条2項道路', 'warn', '市の道路の地図で、道路の番号と種類を見ます。窓口で聞くこともあります。', '見本市 道路台帳：市道 見本1号線　<mark>種別 2項道路</mark>（幅員3.6m）'],
+  ['前の道の幅', '3.6m', 'warn', '2項道路のときは、道の中心から2m下がる必要があるかを見ます。', '見本市 道路台帳：市道 見本1号線　種別 2項道路（<mark>幅員3.6m</mark>）'],
+  ['上水道', '前の道に引き込みあり（口径20mm）', 'ok', '水道局の配管図で、管の位置と口径を見ます。', '見本市 水道局 配管図：前の道に <mark>口径20mm</mark> の引き込みあり'],
+  ['下水道', '公共下水道の区域', 'ok', '下水道の区域図で、区域の内か外かを見ます。', '見本市 下水道 区域図：<mark>公共下水道 供用区域</mark>'],
+  ['土砂災害の区域', '区域の外', 'warn', '県の土砂災害の地図で、敷地の近くに区域がないかを見ます。境目に近いときは窓口で確かめます。', '見本県 土砂災害警戒区域 地図：敷地の北およそ30mに区域の境目。<mark>敷地は区域の外</mark>'],
+  ['埋蔵文化財', '包蔵地の外', 'ok', '市の文化財の地図を見ます。近いときは照会します。', '見本市 埋蔵文化財包蔵地 地図：<mark>敷地は包蔵地の外</mark>'],
+];
+const tb = document.getElementById('rows');
+ITEMS.forEach((it, i) => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${it[0]}</td><td class="v">${it[1]}<span class="fixnote"></span></td>
+    <td><span class="tag ${it[2]}">${it[2] === 'ok' ? '確か' : '要確認'}</span></td>
+    <td>${it[3]}<div class="act" style="margin-top:6px"><button class="src">根拠を開く</button></div></td>
+    <td><div class="act"><button class="chk">確かめた</button><button class="fix">直した</button></div><div class="st"></div></td>`;
+  tr.querySelector('.src').onclick = () => { dtitle.textContent = it[0]; dpaper.innerHTML = it[4]; dlg.showModal(); };
+  tr.querySelector('.chk').onclick = () => { tr.classList.toggle('checked'); tr.classList.remove('fixed'); tr.querySelector('.fixnote').textContent=''; count(); };
+  tr.querySelector('.fix').onclick = () => {
+    const v = prompt('正しい値を入れてください（見本なので保存されません）', it[1]);
+    if (v === null) return;
+    tr.classList.remove('checked'); tr.classList.add('fixed');
+    tr.querySelector('.fixnote').textContent = '人が直した値：' + v; count();
+  };
+  tb.appendChild(tr);
+});
+const dlg = document.getElementById('dlg'), dtitle = document.getElementById('dtitle'), dpaper = document.getElementById('dpaper');
+document.getElementById('dclose').onclick = () => dlg.close();
+function count(){
+  const n = tb.querySelectorAll('tr.checked,tr.fixed').length;
+  document.getElementById('done').textContent = n;
+  document.getElementById('all').textContent = ITEMS.length;
+  document.getElementById('bar').style.width = (n / ITEMS.length * 100) + '%';
+}
+count();
+</script>
+</body>
+</html>

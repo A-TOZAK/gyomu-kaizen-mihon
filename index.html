@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>業務改善の見本</title>
+<meta name="description" content="土地家屋調査士の事務所の業務改善で作った道具を、架空のデータで触れるようにした見本です。">
+<meta name="robots" content="noindex">
+<style>
+:root{--ink:#1f2328;--sub:#5b6168;--line:#dfe2e6;--wash:#f4f5f7;--key:#1f4e79}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Hiragino UD Sans StdN","Hiragino Sans","BIZ UDPGothic","Noto Sans JP",sans-serif;color:var(--ink);background:#fff;line-height:1.75;font-size:15px}
+main{max-width:860px;margin:0 auto;padding:40px 16px 64px}
+h1{font-size:28px;margin:0 0 8px;word-break:auto-phrase}
+.lead{color:var(--sub);margin:0 0 28px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+a.card{display:block;border:1px solid var(--line);border-radius:10px;padding:18px 20px;text-decoration:none;color:inherit}
+a.card:hover{border-color:var(--key)}
+a.card b{display:block;font-size:18px;color:var(--key);margin-bottom:4px}
+a.card span{font-size:14px;color:var(--sub)}
+.note{background:var(--wash);border-radius:8px;padding:14px 16px;font-size:14px;margin-top:24px}
+.foot{margin-top:28px;font-size:13px;color:var(--sub)}
+@media (max-width:640px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+  <h1>業務改善の見本</h1>
+  <p class="lead">土地家屋調査士の事務所の業務改善で作った道具を、架空のデータで作り直しました。実際の案件の情報は入っていません。押した結果はどこにも保存されないので、自由に触ってください。</p>
+  <div class="cards">
+    <a class="card" href="anken/"><b>案件管理アプリ</b><span>案件ごとの段階、担当ごとのやること、工程表、カレンダーを1つの画面で見られます。上の「工程表」を押すと、誰がいつ何をするかが分かります。</span></a>
+    <a class="card" href="kakunin/"><b>人の確認シート</b><span>AIが下書きした報告書の値を、資格者が根拠の資料と見比べて確かめるための一覧です。</span></a>
+  </div>
+  <div class="note">実際の事務所では、案件管理アプリを Google Apps Script で動かし、Googleスプレッドシートに記録しています。この見本は、同じ画面をブラウザの中だけで動くようにしたものです。</div>
+  <p class="foot">作成　外﨑顯博（2026年10月）　<a href="https://researchmap.jp/AkihiroTOZAKI">researchmap</a></p>
+</main>
+</body>
+</html>
